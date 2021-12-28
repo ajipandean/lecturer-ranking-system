@@ -89,7 +89,8 @@ class LecturerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $lecturer = Lecturer::find($id);
+        return view('pages.lecturers.edit', compact('lecturer'));
     }
 
     /**
@@ -101,7 +102,39 @@ class LecturerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $lecturer = Lecturer::find($id);
+
+        Validator::make($request->all(), [
+            'nik' => 'required',
+            'nama' => 'required',
+            'penilaian_mahasiswa' => 'required',
+            'penilaian_dosen' => 'required',
+            'penilaian_atasan' => 'required',
+            'kualifikasi_pendidikan' => 'required',
+            'penelitian' => 'required',
+            'jurnal' => 'required',
+            'pelatihan' => 'required',
+            'seminar' => 'required',
+            'pengabdian_masyarakat' => 'required',
+            'jabatan_akademik' => 'required',
+        ])->validate();
+
+        $fields = [
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'penilaian_mahasiswa' => (int) $request->penilaian_mahasiswa,
+            'penilaian_dosen' => (int) $request->penilaian_dosen,
+            'penilaian_atasan' => (int) $request->penilaian_atasan,
+            'kualifikasi_pendidikan' => $request->kualifikasi_pendidikan,
+            'penelitian' => (int) $request->penelitian,
+            'jurnal' => (int) $request->jurnal,
+            'pelatihan' => (int) $request->pelatihan,
+            'seminar' => (int) $request->seminar,
+            'pengabdian_masyarakat' => (int) $request->pengabdian_masyarakat,
+            'jabatan_akademik' => $request->jabatan_akademik,
+        ];
+        $lecturer->update($fields);
+        return redirect()->route('lecturers.index')->with('success', 'Dosen berhasil diubah');
     }
 
     /**

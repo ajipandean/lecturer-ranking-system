@@ -67,7 +67,7 @@
                                             <td>{{$l->pengabdian_masyarakat}}</td>
                                             <td>{{$l->jabatan_akademik}}</td>
                                             <td style="width: 200px;">
-                                                <a href="#" class="btn btn-warning btn-icon btn-sm icon-left"><i class="fas fa-edit"></i> Ubah</a>
+                                                <a href="{{route('lecturers.edit', $l->id)}}" class="btn btn-warning btn-icon btn-sm icon-left"><i class="fas fa-edit"></i> Ubah</a>
                                                 <button type="button" class="btn btn-danger btn-icon btn-sm icon-left" data-toggle="modal" data-target="#modal-{{$l->id}}"><i class="fas fa-trash"></i> Hapus</button>
                                             </td>
                                         </tr>
