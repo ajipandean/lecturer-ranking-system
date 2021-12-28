@@ -6,11 +6,29 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
+                    @if(session('success'))
+                    <div class="alert alert-success alert-dismissible show fade">
+                        <div class="alert-body">
+                            <button class="close" data-dismiss="alert">
+                                <span>×</span>
+                            </button>
+                            {{session('success')}}
+                        </div>
+                    </div>
+                    @endif
                     <div class="card">
                         <div class="card-header">
                             <h4 class="text-dark">Data Hasil Penilaian</h4>
                         </div>
                         <div class="card-body p-0">
+                            @if (sizeof($lecturers) == 0)
+                            <div class="empty-state">
+                                <div class="empty-state-icon"><i class="fas fa-folder-open"></i></div>
+                                <h2>Data dosen kosong</h2>
+                                <p class="lead">Silakah tambahkan data dosen untuk melihat daftar hasil penilaian</p>
+                                <a href="{{route('lecturers.create')}}" class="btn btn-primary">Tambah dosen</a>
+                            </div>
+                            @else
                             <div class="table-responsive">
                                 <table class="table table-striped table-md">
                                     <thead>
@@ -33,28 +51,31 @@
                                     </thead>
 
                                     <tbody>
+                                        @foreach ($lecturers as $l)
                                         <tr>
-                                            <td>1</td>
-                                            <td>432000007</td>
-                                            <td>Dani Rohpandi</td>
-                                            <td>86</td>
-                                            <td>80</td>
-                                            <td>75</td>
-                                            <td>S2</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>3</td>
-                                            <td>4</td>
-                                            <td>5</td>
-                                            <td>Asisten Ahli</td>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$l->nik}}</td>
+                                            <td>{{$l->nama}}</td>
+                                            <td>{{$l->penilaian_mahasiswa}}</td>
+                                            <td>{{$l->penilaian_dosen}}</td>
+                                            <td>{{$l->penilaian_atasan}}</td>
+                                            <td>{{$l->kualifikasi_pendidikan}}</td>
+                                            <td>{{$l->penelitian}}</td>
+                                            <td>{{$l->jurnal}}</td>
+                                            <td>{{$l->pelatihan}}</td>
+                                            <td>{{$l->seminar}}</td>
+                                            <td>{{$l->pengabdian_masyarakat}}</td>
+                                            <td>{{$l->jabatan_akademik}}</td>
                                             <td style="width: 200px;">
                                                 <a href="#" class="btn btn-warning btn-icon btn-sm icon-left"><i class="fas fa-edit"></i> Ubah</a>
                                                 <button type="button" class="btn btn-danger btn-icon btn-sm icon-left" data-toggle="modal" data-target="#modal"><i class="fas fa-trash"></i> Hapus</button>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,8 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        return view('pages.lecturers.index');
+        $lecturers = Lecturer::all();
+        return view('pages.lecturers.index', compact('lecturers'));
     }
 
     /**
