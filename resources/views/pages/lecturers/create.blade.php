@@ -148,7 +148,7 @@
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-                                <button type="button" class="btn btn-link">Batal</button>
+                                <a href="{{route('lecturers.index')}}" class="btn btn-link">Kembali</a>
                             </div>
                         </div>
                     </form>
