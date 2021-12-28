@@ -112,7 +112,9 @@ class LecturerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lecturer = Lecturer::find($id);
+        $lecturer->delete();
+        return redirect()->route('lecturers.index')->with('success', 'Dosen berhasil dihapus');
     }
 
     public function rank()

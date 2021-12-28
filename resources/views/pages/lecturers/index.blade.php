@@ -68,7 +68,7 @@
                                             <td>{{$l->jabatan_akademik}}</td>
                                             <td style="width: 200px;">
                                                 <a href="#" class="btn btn-warning btn-icon btn-sm icon-left"><i class="fas fa-edit"></i> Ubah</a>
-                                                <button type="button" class="btn btn-danger btn-icon btn-sm icon-left" data-toggle="modal" data-target="#modal"><i class="fas fa-trash"></i> Hapus</button>
+                                                <button type="button" class="btn btn-danger btn-icon btn-sm icon-left" data-toggle="modal" data-target="#modal-{{$l->id}}"><i class="fas fa-trash"></i> Hapus</button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -138,23 +138,29 @@
 @endsection
 
 @section('modal')
-<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
+@foreach ($lecturers as $l)
+<div class="modal fade" id="modal-{{$l->id}}" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modal-label">Hapus Dani Tohpandi</h5>
+                <h5 class="modal-title" id="modal-label">Hapus {{$l->nama}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Apakah Anda yaking ingin menghapus Dosen Dani Rohpandi ini?
+                Apakah Anda yaking ingin menghapus <b>Dosen {{$l->nama}}</b> ini?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Ya, hapus</button>
+                <form action="{{route('lecturers.destroy', $l->id)}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Ya, hapus</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+@endforeach
 @endsection
