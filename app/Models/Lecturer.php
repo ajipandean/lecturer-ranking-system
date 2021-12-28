@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Lecturer extends Model
 {
     use HasFactory;
+
+    protected $table = 'lecturers';
+    protected $fillable = [
+        'nik',
+        'nama',
+        'penilaian_mahasiswa',
+        'penilaian_dosen',
+        'penilaian_atasan',
+        'kualifikasi_pendidikan',
+        'penelitian',
+        'jurnal',
+        'pelatihan',
+        'seminar',
+        'pengabdian_masyarakat',
+        'jabatan_akademik',
+    ];
 }
