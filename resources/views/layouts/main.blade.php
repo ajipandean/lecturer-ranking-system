@@ -36,11 +36,11 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dosen</li>
-                        <li class="{{Request::route()->getName() == 'lecturers.index' ? 'active' : null}}">
-                            <a class="nav-link" href="{{route('lecturers.index')}}"><i class="fas fa-list"></i> <span>Daftar Dosen</span></a>
-                        </li>
                         <li class="{{Request::route()->getName() == 'lecturers.create' ? 'active' : null}}">
                             <a class="nav-link" href="{{route('lecturers.create')}}"><i class="fas fa-plus"></i> <span>Tambah Dosen</span></a>
+                        </li>
+                        <li class="{{Request::route()->getName() == 'lecturers.index' ? 'active' : null}}">
+                            <a class="nav-link" href="{{route('lecturers.index')}}"><i class="fas fa-list"></i> <span>Daftar Dosen</span></a>
                         </li>
                         <li class="{{Request::route()->getName() == 'lecturers.rank' ? 'active' : null}}">
                             <a class="nav-link" href="{{route('lecturers.rank')}}"><i class="fas fa-trophy"></i> <span>Peringkat Dosen</span></a>

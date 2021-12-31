@@ -71,17 +71,6 @@ class LecturerController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -152,6 +141,7 @@ class LecturerController extends Controller
 
     public function rank()
     {
-        return view('pages.lecturers.rank');
+        $lecturers = Lecturer::all();
+        return view('pages.lecturers.rank', compact('lecturers'));
     }
 }

@@ -89,6 +89,14 @@
                         <h4 class="text-dark">Nilai Rating Kecocokan</h4>
                     </div>
                     <div class="card-body p-0">
+                        @if (sizeof($lecturers) == 0)
+                        <div class="empty-state">
+                            <div class="empty-state-icon"><i class="fas fa-folder-open"></i></div>
+                            <h2>Data dosen kosong</h2>
+                            <p class="lead">Silakah tambahkan data dosen untuk melihat daftar hasil rating kecocokan</p>
+                            <a href="{{route('lecturers.create')}}" class="btn btn-primary">Tambah dosen</a>
+                        </div>
+                        @else
                         <div class="table-responsive">
                             <table class="table table-striped table-md">
                                 <thead>
@@ -110,24 +118,35 @@
                                 </thead>
 
                                 <tbody>
+                                    @foreach ($lecturers as $l)
                                     <tr>
-                                        <td>1</td>
-                                        <td>432000007</td>
-                                        <td>Dani Rohpandi</td>
-                                        <td>5</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>3</td>
-                                        <td>5</td>
-                                        <td>4</td>
-                                        <td>3</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>2</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$l->nik}}</td>
+                                        <td>{{$l->nama}}</td>
+                                        <td>{{ceil($l->penilaian_mahasiswa/20)}}</td>
+                                        <td>{{ceil($l->penilaian_dosen/20)}}</td>
+                                        <td>{{ceil($l->penilaian_atasan/20)}}</td>
+                                        @php
+                                        switch($l->kualifikasi_pendidikan) {
+                                        case 'S1': $kp = 1; break;
+                                        case 'S2': $kp = 2; break;
+                                        case 'S3': $kp = 3; break;
+                                        default: $kp = 1;
+                                        }
+                                        @endphp
+                                        <td>{{$kp}}</td>
+                                        <td>{{$l->penelitian}}</td>
+                                        <td>{{$l->jurnal}}</td>
+                                        <td>{{$l->pelatihan}}</td>
+                                        <td>{{$l->seminar}}</td>
+                                        <td>{{$l->pengabdian_masyarakat}}</td>
+                                        <td>{{$l->jabatan_akademik}}</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -143,13 +162,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modal-label">Hapus {{$l->nama}}</h5>
+                <h5 class="modal-title" id="modal-label">Hapus Dosen {{$l->nama}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Apakah Anda yaking ingin menghapus <b>Dosen {{$l->nama}}</b> ini?
+                Apakah Anda yaking ingin menghapus <b>Dosen {{$l->nama}}</b>?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link" data-dismiss="modal">Batal</button>
