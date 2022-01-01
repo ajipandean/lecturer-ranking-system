@@ -16,6 +16,16 @@
                         </div>
                     </div>
                     @endif
+                    @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible show fade">
+                        <div class="alert-body">
+                            <button class="close" data-dismiss="alert">
+                                <span>×</span>
+                            </button>
+                            {{session('error')}}
+                        </div>
+                    </div>
+                    @endif
                     <div class="card">
                         <div class="card-header">
                             <h4 class="text-dark">Data Hasil Penilaian</h4>
@@ -123,24 +133,16 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$l->nik}}</td>
                                         <td>{{$l->nama}}</td>
-                                        <td>{{ceil($l->penilaian_mahasiswa/20)}}</td>
-                                        <td>{{ceil($l->penilaian_dosen/20)}}</td>
-                                        <td>{{ceil($l->penilaian_atasan/20)}}</td>
-                                        @php
-                                        switch($l->kualifikasi_pendidikan) {
-                                        case 'S1': $kp = 1; break;
-                                        case 'S2': $kp = 2; break;
-                                        case 'S3': $kp = 3; break;
-                                        default: $kp = 1;
-                                        }
-                                        @endphp
-                                        <td>{{$kp}}</td>
-                                        <td>{{$l->penelitian}}</td>
-                                        <td>{{$l->jurnal}}</td>
-                                        <td>{{$l->pelatihan}}</td>
-                                        <td>{{$l->seminar}}</td>
-                                        <td>{{$l->pengabdian_masyarakat}}</td>
-                                        <td>{{$l->jabatan_akademik}}</td>
+                                        <td>{{$l->criterias->penilaian_mahasiswa}}</td>
+                                        <td>{{$l->criterias->penilaian_dosen}}</td>
+                                        <td>{{$l->criterias->penilaian_atasan}}</td>
+                                        <td>{{$l->criterias->kualifikasi_pendidikan}}</td>
+                                        <td>{{$l->criterias->penelitian}}</td>
+                                        <td>{{$l->criterias->jurnal}}</td>
+                                        <td>{{$l->criterias->pelatihan}}</td>
+                                        <td>{{$l->criterias->seminar}}</td>
+                                        <td>{{$l->criterias->pengabdian_masyarakat}}</td>
+                                        <td>{{$l->criterias->jabatan_akademik}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

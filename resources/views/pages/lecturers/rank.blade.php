@@ -12,7 +12,7 @@
                         </div>
 
                         <div class="card-body p-0">
-                            @if (sizeof($lecturers) == 0)
+                            @if (sizeof($fields) == 0)
                             <div class="empty-state">
                                 <div class="empty-state-icon"><i class="fas fa-folder-open"></i></div>
                                 <h2>Data dosen kosong</h2>
@@ -32,12 +32,12 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($lecturers as $l)
+                                        @foreach ($fields as $f)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$l->nik}}</td>
-                                            <td>{{$l->nama}}</td>
-                                            <td>31,34</td>
+                                            <td>{{$f['nik']}}</td>
+                                            <td>{{$f['nama']}}</td>
+                                            <td>{{$f['nilai']}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

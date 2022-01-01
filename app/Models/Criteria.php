@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lecturer extends Model
+class Criteria extends Model
 {
     use HasFactory;
 
-    protected $table = 'lecturers';
+    protected $table = 'criterias';
     protected $fillable = [
-        'nik',
-        'nama',
+        'lecturer_id',
         'penilaian_mahasiswa',
         'penilaian_dosen',
         'penilaian_atasan',
@@ -22,11 +21,11 @@ class Lecturer extends Model
         'pelatihan',
         'seminar',
         'pengabdian_masyarakat',
-        'jabatan_akademik',
+        'jabatan_akademik'
     ];
 
-    public function criterias()
+    public function lecturer()
     {
-        return $this->hasOne(Criteria::class);
+        return $this->belongsTo(Lecturer::class, 'lecturer_id');
     }
 }

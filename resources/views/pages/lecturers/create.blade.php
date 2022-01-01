@@ -71,9 +71,9 @@
                                         <div class="form-group">
                                             <label for="kualifikasi-pendidikan">Kualifikasi Pendidikan</label>
                                             <select required name="kualifikasi_pendidikan" id="kualifikasi-pendidikan" class="form-control @error('kualifikasi_pendidikan') is-invalid @enderror" value="{{old('kualifikasi_pendidikan')}}">
-                                                <option value="S1">S1</option>
-                                                <option value="S2">S2</option>
                                                 <option value="S3">S3</option>
+                                                <option value="S2">S2</option>
+                                                <option value="S1">S1</option>
                                             </select>
                                             @error('kualifikasi_pendidikan')
                                             <span class="invalid-feedback" role="alert">
@@ -131,10 +131,11 @@
                                         <div class="form-group mb-0">
                                             <label for="jabatan-akademik">Jabatan Akademik</label>
                                             <select required name="jabatan_akademik" id="jabatan-akademik" class="form-control @error('jabatan_akademik') is-invalid @enderror" value="{{old('jabatan_akademik')}}">
-                                                <option value="Asisten Ahli">Asisten Ahli</option>
-                                                <option value="Rektor">Rektor</option>
-                                                <option value="Pengajar">Pengajar</option>
                                                 <option value="Guru Besar">Guru Besar</option>
+                                                <option value="Lektor Kepala">Lektor Kepala</option>
+                                                <option value="Lektor">Lektor</option>
+                                                <option value="Asisten Ahli">Asisten Ahli</option>
+                                                <option value="Pengajar">Pengajar</option>
                                             </select>
                                             @error('jabatan_akademik')
                                             <span class="invalid-feedback" role="alert">
