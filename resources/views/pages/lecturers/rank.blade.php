@@ -12,6 +12,14 @@
                         </div>
 
                         <div class="card-body p-0">
+                            @if (sizeof($fields) == 0)
+                            <div class="empty-state">
+                                <div class="empty-state-icon"><i class="fas fa-folder-open"></i></div>
+                                <h2>Data dosen kosong</h2>
+                                <p class="lead">Silakah tambahkan data dosen untuk melihat daftar hasil peringkat</p>
+                                <a href="{{route('lecturers.create')}}" class="btn btn-primary">Tambah dosen</a>
+                            </div>
+                            @else
                             <div class="table-responsive">
                                 <table class="table table-striped table-md">
                                     <thead>
@@ -24,15 +32,18 @@
                                     </thead>
 
                                     <tbody>
+                                        @foreach ($fields as $f)
                                         <tr>
-                                            <td>1</td>
-                                            <td>432000007</td>
-                                            <td>Dani Rohpandi</td>
-                                            <td>31,34</td>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$f['nik']}}</td>
+                                            <td>{{$f['nama']}}</td>
+                                            <td>{{$f['nilai']}}</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
